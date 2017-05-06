@@ -1,0 +1,35 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<header class="jumbotron" style="background-color:#A9F16C">
+  <div class="container">
+    <div class="row">
+      <h1>It works!</h1>
+      <p></p>
+    </div>
+  </div>
+</header>
+
+<div>
+  <form action="/APP/LOTest" method="POST">
+	  <ul>
+	  {{range $k, $v :=.questions}}
+	  <li>{{ $v.Question }}</li>
+	  {{range $v.Choices}}
+	  <input type="radio" name="{{$k}}" value="{{.Mark}}">{{.Answer}}
+	  <br>
+	  {{end}}
+	  {{end}}
+	  </ul>
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}
